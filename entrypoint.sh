@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -e
 echo "========== Downloading single HTML =================="
-php /app/cli.php download:single-html
+[ -f shape-up.html.md5 ] || ( php /app/cli.php download:single-html && md5sum shape-up.html  > shape-up.html.md5 )
 echo "============ Converting to e-book ===================="
 ebook-convert shape-up.html /app/output/shape-up.${1} \
     --authors "Ryan Singer" \
